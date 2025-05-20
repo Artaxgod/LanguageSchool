@@ -1,0 +1,19 @@
+﻿<Page x:Class="LanguageSchool.View.Pages.AuthPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LanguageSchool.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AuthPage">
+
+    <Grid Background="#FFD87A90" Padding="20">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="300">
+            <TextBox Text="{Binding Email}" Placeholder="Email" Margin="0,0,0,10"/>
+            <PasswordBox Password="{Binding Password}" Placeholder="Пароль" Margin="0,0,0,20"/>
+            <Button Content="Войти" Command="{Binding LoginCommand}" Style="{StaticResource PrimaryButton}"/>
+            <TextBlock Text="{Binding ErrorMessage}" Foreground="Red"/>
+        </StackPanel>
+    </Grid>
+</Page>

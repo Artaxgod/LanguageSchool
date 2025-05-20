@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:LanguageSchool"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="Button" BasedOn="{StaticResource PrimaryButton}"/>
+        <Style TargetType="TextBox" BasedOn="{StaticResource InputStyle}"/>
     </Application.Resources>
 </Application>

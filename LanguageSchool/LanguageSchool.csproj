@@ -62,6 +62,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\ApplicationDbContext.cs" />
+    <Compile Include="Model\Entities\Attendance.cs" />
+    <Compile Include="Model\Entities\Client.cs" />
+    <Compile Include="Model\Entities\Contract.cs" />
+    <Compile Include="Model\Entities\Feedback.cs" />
+    <Compile Include="Model\Entities\Group.cs" />
+    <Compile Include="Model\Entities\Message.cs" />
+    <Compile Include="Model\Entities\Schedule.cs" />
+    <Compile Include="Model\Entities\Service.cs" />
+    <Compile Include="Model\Entities\Teacher.cs" />
+    <Compile Include="Model\Entities\User.cs" />
+    <Compile Include="ViewModel\Admin\ClientViewModel.cs" />
+    <Compile Include="ViewModel\AuthViewModel.cs" />
+    <Compile Include="ViewModel\Base\NotifyPropertyChanged.cs" />
+    <Compile Include="ViewModel\Base\RelayCommand.cs" />
+    <Compile Include="View\Pages\Admin\ClientsPage.xaml.cs">
+      <DependentUpon>ClientsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\AuthPage.xaml.cs">
+      <DependentUpon>AuthPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -74,6 +95,17 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Style\MainStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Admin\ClientsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\AuthPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Attendances.cs">
@@ -119,7 +151,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model\PartialClasses\Users.cs" />
     <Compile Include="Model\Roles.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -171,10 +202,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\" />
-    <Folder Include="View\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

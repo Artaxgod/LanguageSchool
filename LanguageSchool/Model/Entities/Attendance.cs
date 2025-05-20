@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LanguageSchool.Model.PartialClasses
+namespace LanguageSchool.Model.Entities
 {
-    internal class Users
+    internal class Attendance
     {
     }
 }
