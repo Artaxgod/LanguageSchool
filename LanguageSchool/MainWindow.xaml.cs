@@ -25,31 +25,16 @@ namespace LanguageSchool
         {
             InitializeComponent();
             MainFrame.Navigate(new Pages.AuthPage());
+            NavigationService.SetMainFrame(MainFrame);
         }
-        private void VhodButtonClick(object sender, RoutedEventArgs e)
-        {
-            string phone = PhoneBox.Text;
-            string password = PasswordBox.Password;
+    }
 
-            if (phone.Length < 5)
-            {
-                PhoneBox.ToolTip = "Данные заполнены некорректно!";
-                PhoneBox.Background = Brushes.Gray;
-            }
-            else if (password.Length < 3)
-            {
-                PasswordBox.ToolTip = "Данные заполнены некорректно!";
-                PasswordBox.Background = Brushes.Gray;
-            }
-            else
-            {
-                PhoneBox.ToolTip = "";
-                PhoneBox.Background = Brushes.Transparent;
-                PasswordBox.ToolTip = "";
-                PasswordBox.Background = Brushes.Transparent;
-                MessageBox.Show("Alright!");
-            }
+    public static class NavigationService
+    {
+        public static Frame MainFrame { get; private set; }
 
-        }
+        public static void SetMainFrame(Frame frame) => MainFrame = frame;
+
+        public static void Navigate(Page page) => MainFrame.Navigate(page);
     }
 }

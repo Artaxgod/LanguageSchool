@@ -7,4 +7,7 @@
         <Style TargetType="Button" BasedOn="{StaticResource PrimaryButton}"/>
         <Style TargetType="TextBox" BasedOn="{StaticResource InputStyle}"/>
     </Application.Resources>
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/LanguageSchool;component/Styles/MainStyle.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
 </Application>

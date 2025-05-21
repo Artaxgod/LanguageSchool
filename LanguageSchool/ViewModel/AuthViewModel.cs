@@ -12,14 +12,14 @@ namespace LanguageSchool.ViewModel
 {
     public class AuthViewModel : NotifyPropertyChanged
     {
-        private string _email;
+        private string _phone;
         private string _password;
         private string _errorMessage;
 
-        public string Email
+        public string Phone
         {
-            get => _email;
-            set => SetProperty(ref _email, value);
+            get => _phone;
+            set => SetProperty(ref _phone, value);
         }
 
         public string Password
@@ -35,27 +35,28 @@ namespace LanguageSchool.ViewModel
         }
 
         public ICommand LoginCommand { get; }
+        public ICommand ExitCommand { get; }
 
         private readonly LanguageSchoolContext _context = new();
 
         public AuthViewModel()
         {
             LoginCommand = new RelayCommand(OnLogin);
+            ExitCommand = new RelayCommand(OnExit);
         }
 
         private void OnLogin()
         {
             var user = _context.Users
                 .Include(u => u.Role)
-                .FirstOrDefault(u => u.Email == Email && u.Password == Password);
+                .FirstOrDefault(u => u.Phone == Phone && u.Password == Password);
 
             if (user == null)
             {
-                ErrorMessage = "Неверный email или пароль";
+                ErrorMessage = "Неверный телефон или пароль";
                 return;
             }
 
-            // Переключение интерфейса в зависимости от роли
             switch (user.Role.RoleName)
             {
                 case "Администратор":
@@ -68,9 +69,11 @@ namespace LanguageSchool.ViewModel
                     NavigationService.Navigate(new TeacherPage());
                     break;
                 case "Клиент":
-                    NavigationService.Navigate(new ClientCabinetPage(user.ClientID));
+                    NavigationService.Navigate(new ClientCabinetPage(user.UserID));
                     break;
             }
         }
+
+        private void OnExit() => Application.Current.Shutdown();
     }
 }

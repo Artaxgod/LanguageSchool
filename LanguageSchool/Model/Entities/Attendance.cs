@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace LanguageSchool.Model.Entities
 {
-    internal class Attendance
+    public class Attendance
     {
+        public int AttendanceID { get; set; }
+        public int ClientID { get; set; }
+        public int ScheduleID { get; set; }
+        public bool IsPresent { get; set; }
+
+        public virtual Client Client { get; set; }
+        public virtual Schedule Schedule { get; set; }
     }
 }

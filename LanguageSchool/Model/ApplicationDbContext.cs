@@ -8,9 +8,9 @@ using LanguageSchool.Model.Entities;
 
 namespace LanguageSchool.Model
 {
-    public class LanguageSchoolContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
-        public LanguageSchoolContext() : base("LanguageSchoolDB") { }
+        public ApplicationDbContext() : base("LanguageSchoolDB") { }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Client> Clients { get; set; }
@@ -25,61 +25,38 @@ namespace LanguageSchool.Model
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // Настройка связей
+            // Связь Users -> Clients
+            modelBuilder.Entity<User>()
+                .HasOptional(u => u.Client)
+                .WithRequired(c => c.User)
+                .WillCascadeOnDelete(false);
+
+            // Связь Users -> Teachers
+            modelBuilder.Entity<User>()
+                .HasOptional(u => u.Teacher)
+                .WithRequired(t => t.User)
+                .WillCascadeOnDelete(false);
+
+            // Связь Clients -> GroupClients
             modelBuilder.Entity<Client>()
-                .HasRequired(c => c.User)
-                .WithMany()
-                .HasForeignKey(c => c.UserID);
+                .HasMany(c => c.GroupClients)
+                .WithRequired(gc => gc.Client)
+                .HasForeignKey(gc => gc.ClientID)
+                .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Teacher>()
-                .HasRequired(t => t.User)
-                .WithMany()
-                .HasForeignKey(t => t.UserID);
-
-            modelBuilder.Entity<Group>()
-                .HasRequired(g => g.Language)
-                .WithMany()
-                .HasForeignKey(g => g.LanguageID);
-
+            // Связь Schedules -> GroupSchedules
             modelBuilder.Entity<Schedule>()
-                .HasRequired(s => s.Teacher)
-                .WithMany()
-                .HasForeignKey(s => s.TeacherID);
+                .HasMany(s => s.GroupSchedules)
+                .WithRequired(gs => gs.Schedule)
+                .HasForeignKey(gs => gs.ScheduleID)
+                .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Attendance>()
-                .HasRequired(a => a.Client)
-                .WithMany()
-                .HasForeignKey(a => a.ClientID);
-
-            modelBuilder.Entity<Attendance>()
-                .HasRequired(a => a.Schedule)
-                .WithMany()
-                .HasForeignKey(a => a.ScheduleID);
-
-            modelBuilder.Entity<Contract>()
-                .HasRequired(c => c.Client)
-                .WithMany()
-                .HasForeignKey(c => c.ClientID);
-
-            modelBuilder.Entity<Contract>()
-                .HasRequired(c => c.Service)
-                .WithMany()
-                .HasForeignKey(c => c.ServiceID);
-
-            modelBuilder.Entity<Message>()
-                .HasRequired(m => m.Client)
-                .WithMany()
-                .HasForeignKey(m => m.ClientID);
-
-            modelBuilder.Entity<Message>()
-                .HasRequired(m => m.Teacher)
-                .WithMany()
-                .HasForeignKey(m => m.TeacherID);
-
-            modelBuilder.Entity<Feedback>()
-                .HasRequired(f => f.User)
-                .WithMany()
-                .HasForeignKey(f => f.UserID);
+            // Связь Groups -> GroupClients
+            modelBuilder.Entity<Group>()
+                .HasMany(g => g.GroupClients)
+                .WithRequired(gc => gc.Group)
+                .HasForeignKey(gc => gc.GroupID)
+                .WillCascadeOnDelete(false);
         }
     }
 }
