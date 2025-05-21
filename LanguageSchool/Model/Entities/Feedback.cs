@@ -15,6 +15,6 @@ namespace LanguageSchool.Model.Entities
         public bool IsRead { get; set; }
 
         // Navigation properties
-        public User User { get; set; }
+        public virtual User User { get; set; }
     }
 }

@@ -35,14 +35,12 @@ namespace LanguageSchool.ViewModel
         }
 
         public ICommand LoginCommand { get; }
-        public ICommand ExitCommand { get; }
 
         private readonly LanguageSchoolContext _context = new();
 
         public AuthViewModel()
         {
             LoginCommand = new RelayCommand(OnLogin);
-            ExitCommand = new RelayCommand(OnExit);
         }
 
         private void OnLogin()
@@ -73,7 +71,5 @@ namespace LanguageSchool.ViewModel
                     break;
             }
         }
-
-        private void OnExit() => Application.Current.Shutdown();
     }
 }

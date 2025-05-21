@@ -8,6 +8,9 @@ using System.Windows;
 
 namespace LanguageSchool.Helpers
 {
+    using System.Windows;
+    using System.Windows.Controls;
+
     public static class PasswordBoxHelper
     {
         public static readonly DependencyProperty BindablePassword =

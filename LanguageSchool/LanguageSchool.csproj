@@ -63,6 +63,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helpers\PasswordBoxHelper.cs" />
+    <Compile Include="Helpers\Validator.cs" />
     <Compile Include="Model\ApplicationDbContext.cs" />
     <Compile Include="Model\Entities\Attendance.cs" />
     <Compile Include="Model\Entities\Client.cs" />
@@ -74,15 +75,31 @@
     <Compile Include="Model\Entities\Service.cs" />
     <Compile Include="Model\Entities\Teacher.cs" />
     <Compile Include="Model\Entities\User.cs" />
-    <Compile Include="ViewModel\Admin\ClientViewModel.cs" />
+    <Compile Include="Services\ClientService.cs" />
+    <Compile Include="Services\ContractService.cs" />
+    <Compile Include="Services\ReportService.cs" />
+    <Compile Include="Services\TeacherService.cs" />
+    <Compile Include="ViewModel\AdminViewModel.cs" />
     <Compile Include="ViewModel\AuthViewModel.cs" />
     <Compile Include="ViewModel\Base\NotifyPropertyChanged.cs" />
     <Compile Include="ViewModel\Base\RelayCommand.cs" />
-    <Compile Include="View\Pages\Admin\ClientsPage.xaml.cs">
-      <DependentUpon>ClientsPage.xaml</DependentUpon>
+    <Compile Include="ViewModel\ClientViewModel.cs" />
+    <Compile Include="ViewModel\ManagerViewModel.cs" />
+    <Compile Include="ViewModel\TeacherViewModel.cs" />
+    <Compile Include="View\Pages\AdminPage.xaml.cs">
+      <DependentUpon>AdminPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\AuthPage.xaml.cs">
       <DependentUpon>AuthPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\ClientCabinetPage.xaml.cs">
+      <DependentUpon>ClientCabinetPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\ManagerPage.xaml.cs">
+      <DependentUpon>ManagerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\TeacherPage.xaml.cs">
+      <DependentUpon>TeacherPage.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -96,14 +113,26 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Styles\MainStyle.xaml">
+    <Page Include="View\Pages\ClientCabinetPage.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\Admin\ClientsPage.xaml">
+    <Page Include="View\Styles\MainStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\AdminPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\AuthPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\ManagerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\TeacherPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

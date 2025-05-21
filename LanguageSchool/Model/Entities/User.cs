@@ -22,8 +22,8 @@ namespace LanguageSchool.Model.Entities
         public int RoleID { get; set; }
 
         // Navigation properties
-        public Role Role { get; set; }
-        public Client Client { get; set; }
-        public Teacher Teacher { get; set; }
+        public virtual Role Role { get; set; }
+        public virtual Client Client { get; set; }
+        public virtual Teacher Teacher { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace LanguageSchool.Model.Entities
         public bool IsRead { get; set; }
 
         // Navigation properties
-        public Client Client { get; set; }
-        public Teacher Teacher { get; set; }
+        public virtual Client Client { get; set; }
+        public virtual Teacher Teacher { get; set; }
     }
 }

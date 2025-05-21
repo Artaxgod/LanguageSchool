@@ -8,9 +8,9 @@ using LanguageSchool.Model.Entities;
 
 namespace LanguageSchool.Model
 {
-    public class ApplicationDbContext : DbContext
+    public class LanguageSchoolContext : DbContext
     {
-        public ApplicationDbContext() : base("LanguageSchoolDB") { }
+        public LanguageSchoolContext() : base("LanguageSchoolContext") { }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Client> Clients { get; set; }
@@ -25,38 +25,42 @@ namespace LanguageSchool.Model
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // Связь Users -> Clients
-            modelBuilder.Entity<User>()
-                .HasOptional(u => u.Client)
-                .WithRequired(c => c.User)
-                .WillCascadeOnDelete(false);
-
-            // Связь Users -> Teachers
-            modelBuilder.Entity<User>()
-                .HasOptional(u => u.Teacher)
-                .WithRequired(t => t.User)
-                .WillCascadeOnDelete(false);
-
-            // Связь Clients -> GroupClients
-            modelBuilder.Entity<Client>()
-                .HasMany(c => c.GroupClients)
-                .WithRequired(gc => gc.Client)
-                .HasForeignKey(gc => gc.ClientID)
-                .WillCascadeOnDelete(false);
-
-            // Связь Schedules -> GroupSchedules
-            modelBuilder.Entity<Schedule>()
-                .HasMany(s => s.GroupSchedules)
-                .WithRequired(gs => gs.Schedule)
-                .HasForeignKey(gs => gs.ScheduleID)
-                .WillCascadeOnDelete(false);
-
-            // Связь Groups -> GroupClients
+            // Настройка связей Many-to-Many
             modelBuilder.Entity<Group>()
-                .HasMany(g => g.GroupClients)
-                .WithRequired(gc => gc.Group)
-                .HasForeignKey(gc => gc.GroupID)
-                .WillCascadeOnDelete(false);
+                .HasMany(g => g.Clients)
+                .WithMany(c => c.Groups)
+                .Map(gc => {
+                    gc.MapLeftKey("GroupID");
+                    gc.MapRightKey("ClientID");
+                    gc.ToTable("GroupClients");
+                });
+
+            modelBuilder.Entity<Group>()
+                .HasMany(g => g.Schedules)
+                .WithMany(s => s.Groups)
+                .Map(gs => {
+                    gs.MapLeftKey("GroupID");
+                    gs.MapRightKey("ScheduleID");
+                    gs.ToTable("GroupSchedules");
+                });
+
+            modelBuilder.Entity<Teacher>()
+                .HasMany(t => t.Groups)
+                .WithMany(g => g.Teachers)
+                .Map(gt => {
+                    gt.MapLeftKey("TeacherID");
+                    gt.MapRightKey("GroupID");
+                    gt.ToTable("GroupTeachers");
+                });
+
+            modelBuilder.Entity<Homework>()
+                .HasMany(h => h.Groups)
+                .WithMany(g => g.Homeworks)
+                .Map(hg => {
+                    hg.MapLeftKey("HomeworkID");
+                    hg.MapRightKey("GroupID");
+                    hg.ToTable("GroupHomeworks");
+                });
         }
     }
 }

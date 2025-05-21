@@ -15,9 +15,10 @@ namespace LanguageSchool.Model.Entities
         public int LanguageID { get; set; }
 
         // Navigation properties
-        public Language Language { get; set; }
-        public ICollection<GroupClient> GroupClients { get; set; }
-        public ICollection<GroupSchedule> GroupSchedules { get; set; }
-        public ICollection<GroupTeacher> GroupTeachers { get; set; }
+        public virtual Language Language { get; set; }
+        public virtual ICollection<Client> Clients { get; set; } = new List<Client>();
+        public virtual ICollection<Teacher> Teachers { get; set; } = new List<Teacher>();
+        public virtual ICollection<Schedule> Schedules { get; set; } = new List<Schedule>();
+        public virtual ICollection<Homework> Homeworks { get; set; } = new List<Homework>();
     }
 }

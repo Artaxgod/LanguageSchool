@@ -12,19 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using LanguageSchool.ViewModel.Admin;
 
-namespace LanguageSchool.View.Pages.Admin
+namespace LanguageSchool.View.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для ClientsPage.xaml
+    /// Логика взаимодействия для ClientCabinetPage.xaml
     /// </summary>
-    public partial class ClientsPage : Page
+    public partial class ClientCabinetPage : Page
     {
-        public ClientsPage()
+        public ClientCabinetPage()
         {
             InitializeComponent();
-            DataContext = new ClientViewModel();
         }
     }
 }

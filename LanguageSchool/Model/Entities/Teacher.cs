@@ -13,7 +13,7 @@ namespace LanguageSchool.Model.Entities
         public string Specialization { get; set; }
 
         // Navigation properties
-        public User User { get; set; }
-        public ICollection<GroupTeacher> GroupTeachers { get; set; }
+        public virtual User User { get; set; }
+        public virtual ICollection<Group> Groups { get; set; } = new List<Group>();
     }
 }

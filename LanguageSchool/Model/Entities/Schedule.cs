@@ -15,9 +15,7 @@ namespace LanguageSchool.Model.Entities
         public string Topic { get; set; }
 
         // Navigation properties
-        public Teacher Teacher { get; set; }
-        public ICollection<Attendance> Attendances { get; set; }
-        public ICollection<GroupSchedule> GroupSchedules { get; set; }
-        public ICollection<Homework> Homeworks { get; set; }
+        public virtual Teacher Teacher { get; set; }
+        public virtual ICollection<Group> Groups { get; set; } = new List<Group>();
     }
 }
