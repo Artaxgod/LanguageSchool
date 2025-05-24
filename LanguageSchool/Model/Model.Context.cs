@@ -37,7 +37,6 @@ namespace LanguageSchool.Model
         public DbSet<Roles> Roles { get; set; }
         public DbSet<Schedules> Schedules { get; set; }
         public DbSet<Services> Services { get; set; }
-        public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<Teachers> Teachers { get; set; }
         public DbSet<Users> Users { get; set; }
     }

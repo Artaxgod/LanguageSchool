@@ -3,11 +3,4 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:LanguageSchool"
              StartupUri="MainWindow.xaml">
-    <Application.Resources>
-        <Style TargetType="Button" BasedOn="{StaticResource PrimaryButton}"/>
-        <Style TargetType="TextBox" BasedOn="{StaticResource InputStyle}"/>
-    </Application.Resources>
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/LanguageSchool;component/Styles/MainStyle.xaml"/>
-    </ResourceDictionary.MergedDictionaries>
 </Application>

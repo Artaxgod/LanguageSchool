@@ -8,7 +8,4 @@
         Title="MainWindow" Height="450" Width="800"
         >
     <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
-    <Grid>
-        
-    </Grid>
 </Window>
